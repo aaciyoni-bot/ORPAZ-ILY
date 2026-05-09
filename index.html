@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -11,28 +10,30 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600&family=Heebo:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- פונטים רכים ועגולים יותר -->
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Varela+Round&display=swap" rel="stylesheet">
+    <!-- אייקונים דקים ועדינים של Phosphor (במקום FontAwesome) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
     
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        brand: {
-                            purple: '#9B8CA4',      /* סגול מעושן/לילך עמוק */
-                            purpleLight: '#E8E1ED', /* רקע סגול בהיר מאוד */
-                            pink: '#D7AEB3',        /* ורוד פודרה/ורד עתיק */
-                            pinkLight: '#F7EDEE',   /* רקע ורוד כמעט לבן */
-                            sage: '#A3B1A0',        /* ירוק מרווה/יער עדין */
-                            sageLight: '#EAF0E9',   /* ירוק בהיר מאוד */
-                            text: '#4A424E',        /* סגול-אפור כהה לטקסט */
-                            gold: '#C4A47C'         /* נגיעות זהב עדינות */
+                        fairy: {
+                            lilac: '#DAB8EB',       /* לילך קסום */
+                            lilacLight: '#F5EDFA',  /* רקע לילך בהיר מאוד */
+                            mint: '#B9E3D8',        /* ירוק מנטה/פיה */
+                            mintLight: '#E8F7F3',   /* רקע מנטה בהיר */
+                            rose: '#F0C9D6',        /* ורוד שושן */
+                            roseLight: '#FBF0F4',   /* רקע ורוד בהיר */
+                            text: '#5B4B6B',        /* סגול עמוק לטקסט (במקום אפור/שחור) */
+                            gold: '#E0C58A'         /* אבק פיות זהוב */
                         }
                     },
                     fontFamily: {
-                        sans: ['Assistant', 'sans-serif'],
-                        display: ['Heebo', 'sans-serif']
+                        sans: ['Varela Round', 'sans-serif'], /* פונט טקסט רך ומעוגל */
+                        display: ['Amatic SC', 'cursive']     /* פונט כותרות קסום דמוי כתב יד */
                     }
                 }
             }
@@ -41,37 +42,61 @@
     
     <style>
         body {
-            font-family: 'Assistant', sans-serif;
-            background-color: theme('colors.brand.pinkLight');
-            color: theme('colors.brand.text');
+            font-family: 'Varela Round', sans-serif;
+            background-color: theme('colors.fairy.lilacLight');
+            color: theme('colors.fairy.text');
             overflow-x: hidden;
         }
 
         h1, h2, h3, .font-display {
-            font-family: 'Heebo', sans-serif;
-            font-weight: 400;
-            letter-spacing: 0.02em;
+            font-family: 'Amatic SC', cursive;
+            font-weight: 700;
+            letter-spacing: 0.05em;
         }
 
-        /* צורות אורגניות רכות ומתוקנות */
-        .shape-petal-1 {
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        /* רקע יער חלומי עם נצנוצים */
+        .bg-magic-forest {
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(218, 184, 235, 0.15), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(185, 227, 216, 0.15), transparent 25%),
+                linear-gradient(135deg, theme('colors.fairy.lilacLight') 0%, theme('colors.fairy.roseLight') 50%, theme('colors.fairy.mintLight') 100%);
+        }
+
+        /* צורות טיפה/עלה א-סימטריות ורכות */
+        .shape-fairy-1 {
+            border-radius: 61% 39% 51% 49% / 51% 42% 58% 49%;
         }
         
-        .shape-petal-2 {
-            border-radius: 40% 60% 50% 50% / 50% 50% 50% 50%;
+        .shape-fairy-2 {
+            border-radius: 41% 59% 44% 56% / 46% 49% 51% 54%;
         }
 
-        .shape-petal-3 {
-            border-radius: 50% 50% 40% 60% / 40% 40% 60% 60%;
+        .shape-fairy-3 {
+            border-radius: 54% 46% 38% 62% / 60% 41% 59% 40%;
         }
 
-        /* הילה עדינה */
-        .glow-effect {
-            box-shadow: 0 10px 40px -10px rgba(215, 174, 179, 0.4);
+        /* הילה קסומה מסביב לתמונות/אלמנטים */
+        .magic-glow {
+            box-shadow: 0 0 40px rgba(218, 184, 235, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.8);
+            border: 2px solid rgba(255,255,255,0.6);
         }
 
-        /* מפרידי גלים */
+        /* אנימציית ריחוף (Floating) */
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        .animate-float-delayed {
+            animation: float 6s ease-in-out infinite;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        /* מפרידי גלים עדינים ביותר */
         .wave-divider {
             position: absolute;
             width: 100%;
@@ -85,54 +110,72 @@
             width: calc(100% + 1.3px);
             height: 30px;
         }
-        @media (min-width: 768px) {
-            .wave-divider svg { height: 50px; }
-        }
 
-        /* רקע עדין */
-        .bg-gradient-fairy {
-            background: linear-gradient(135deg, theme('colors.brand.pinkLight') 0%, theme('colors.brand.purpleLight') 100%);
-        }
-
-        /* אנימציות גלילה */
+        /* אנימציות צצה (Fade In) */
         .fade-in {
             opacity: 0;
             transform: translateY(20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transition: opacity 1s ease-out, transform 1s ease-out;
         }
         .fade-in.appear {
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* כפתור פיות */
+        .btn-magic {
+            background: linear-gradient(120deg, theme('colors.fairy.lilac') 0%, theme('colors.fairy.rose') 100%);
+            color: white;
+            box-shadow: 0 10px 20px -5px rgba(218, 184, 235, 0.6);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-magic::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent);
+            transform: skewX(-20deg);
+            transition: all 0.5s ease;
+        }
+        .btn-magic:hover::after {
+            left: 150%;
+        }
+        .btn-magic:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 25px -5px rgba(218, 184, 235, 0.8);
+        }
     </style>
 </head>
 <body class="antialiased">
 
-    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md text-brand-text transition-all duration-300 border-b border-brand-pink/20 shadow-sm" id="navbar">
+    <!-- תפריט ניווט -->
+    <nav class="fixed w-full z-50 bg-white/70 backdrop-blur-md text-fairy-text transition-all duration-300 border-b border-white/50" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
+            <div class="flex justify-between items-center h-20 md:h-24">
                 
-                <!-- תפריט המבורגר -->
+                <!-- תפריט המבורגר (שמאל) -->
                 <div class="flex items-center md:w-1/3">
-                    <button id="mobile-menu-btn" class="text-brand-purple hover:text-brand-pink focus:outline-none p-2 transition-colors">
-                        <i class="fas fa-bars text-2xl"></i>
+                    <button id="mobile-menu-btn" class="text-fairy-lilac hover:text-fairy-rose focus:outline-none p-2 transition-colors">
+                        <i class="ph ph-list text-3xl"></i>
                     </button>
                 </div>
 
-                <!-- לוגו (מתוקן ומאוזן) -->
+                <!-- לוגו (מרכז) -->
                 <div class="flex flex-col items-center justify-center md:w-1/3">
-                    <img src="ORPAZLOGO.png" alt="לוגו אורפז" class="h-10 md:h-12 w-auto object-contain">
-                    <span class="font-display text-xl tracking-widest text-brand-purple mt-1">אורפז</span>
+                    <img src="ORPAZLOGO.png" alt="לוגו אורפז" class="h-12 md:h-16 w-auto object-contain drop-shadow-sm mb-1">
+                    <span class="font-display text-3xl md:text-4xl text-fairy-text tracking-widest mt-1">אורפז</span>
                 </div>
 
-                <!-- כפתור יצירת קשר + רשתות -->
+                <!-- כפתור יצירת קשר + רשתות חברתיות (ימין) -->
                 <div class="flex items-center justify-end gap-4 md:w-1/3">
-                    <div class="hidden lg:flex gap-4 mr-4 text-xl">
-                        <a href="https://www.instagram.com/orpaz_iliy_oren?igsh=MzNuNGp4b3lsNHAx" target="_blank" class="text-brand-purple hover:text-brand-pink transition"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.facebook.com/share/1BCMwK385v/" target="_blank" class="text-brand-purple hover:text-brand-pink transition"><i class="fab fa-facebook-f"></i></a>
+                    <div class="hidden lg:flex gap-4 mr-4 text-2xl text-fairy-lilac">
+                        <a href="https://www.instagram.com/orpaz_iliy_oren?igsh=MzNuNGp4b3lsNHAx" target="_blank" class="hover:text-fairy-rose transition"><i class="ph ph-instagram-logo"></i></a>
+                        <a href="https://www.facebook.com/share/1BCMwK385v/" target="_blank" class="hover:text-fairy-rose transition"><i class="ph ph-facebook-logo"></i></a>
                     </div>
                     <a href="https://wa.me/972506954593?text=היי%20אורפז,%20אשמח%20לתאם%20שיחה" target="_blank" 
-                       class="hidden md:block bg-brand-pink/10 hover:bg-brand-pink text-brand-purple hover:text-white border border-brand-pink/50 py-2 px-6 rounded-full text-base transition-all">
+                       class="hidden md:block border border-fairy-lilac text-fairy-text hover:bg-fairy-lilac hover:text-white py-2 px-6 rounded-full text-base transition-all bg-white/50">
                         לתאום שיחה
                     </a>
                 </div>
@@ -140,169 +183,177 @@
         </div>
 
         <!-- תפריט מובייל נפתח -->
-        <div id="mobile-menu" class="hidden bg-white/95 backdrop-blur-xl absolute w-full border-t border-brand-pink/20 shadow-lg">
-            <div class="px-4 py-6 space-y-4 text-center">
-                <a href="#about" class="block text-brand-purple hover:text-brand-pink text-lg">מה קורה כאן בעצם</a>
-                <a href="#services" class="block text-brand-purple hover:text-brand-pink text-lg">סדנאות וריטריטים</a>
-                <a href="#contact" class="block text-brand-purple hover:text-brand-pink text-lg">הרשמה ויצירת קשר</a>
+        <div id="mobile-menu" class="hidden bg-white/95 backdrop-blur-xl absolute w-full shadow-lg border-b border-fairy-lilac/20">
+            <div class="px-4 py-8 space-y-6 text-center">
+                <a href="#about" class="block text-fairy-text hover:text-fairy-lilac text-xl font-display tracking-wider">מה קורה כאן בעצם</a>
+                <a href="#services" class="block text-fairy-text hover:text-fairy-lilac text-xl font-display tracking-wider">סדנאות וריטריטים</a>
+                <a href="#contact" class="block text-fairy-text hover:text-fairy-lilac text-xl font-display tracking-wider">הרשמה ויצירת קשר</a>
                 <a href="https://wa.me/972506954593?text=היי%20אורפז,%20אשמח%20לתאם%20שיחה" target="_blank" 
-                   class="inline-block mt-4 bg-brand-pink text-white py-2 px-8 rounded-full text-lg shadow-sm">
-                    לתאום שיחה
+                   class="inline-block mt-6 btn-magic py-3 px-10 rounded-full text-lg">
+                    לתאום שיחה בווטסאפ
                 </a>
             </div>
         </div>
     </nav>
 
-    <section class="relative pt-24 md:pt-32 pb-16 min-h-[85vh] flex flex-col items-center justify-center bg-gradient-fairy">
-        <div class="absolute inset-0 z-0 overflow-hidden">
+    <!-- אזור Hero (ראשי) -->
+    <section class="relative pt-24 md:pt-32 min-h-[90vh] flex flex-col items-center justify-center bg-magic-forest">
+        <!-- תמונת רקע של פריחה עדינה/יער מטושטש -->
+        <div class="absolute inset-0 z-0 overflow-hidden opacity-30 mix-blend-overlay pointer-events-none">
             <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
-                 alt="רקע פריחה" class="w-full h-full object-cover opacity-20 mix-blend-multiply">
-            <div class="absolute inset-0 bg-gradient-to-t from-brand-pinkLight via-transparent to-white/50"></div>
+                 alt="פריחת אביב" class="w-full h-full object-cover">
         </div>
 
-        <div class="relative z-10 text-center px-4 max-w-3xl mx-auto fade-in mt-8">
-            <div class="inline-block mb-4 px-4 py-1 border border-brand-sage/40 rounded-full text-brand-sage text-sm tracking-widest bg-white/30 backdrop-blur-sm">
-                לגלות את הטוב
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto fade-in mt-8">
+            <div class="inline-flex items-center gap-2 mb-6 px-4 py-1.5 border border-fairy-mint/50 rounded-full text-fairy-mint text-sm bg-white/40 backdrop-blur-sm animate-float">
+                <i class="ph-fill ph-sparkle"></i>
+                <span>לגלות את הטוב</span>
             </div>
             
-            <!-- הקטנת כותרות לממדים הגיוניים -->
-            <h1 class="text-4xl md:text-5xl lg:text-6xl text-brand-purple leading-tight mb-6 font-display drop-shadow-sm">
+            <h1 class="text-6xl md:text-8xl lg:text-9xl text-fairy-text leading-none mb-8 font-display drop-shadow-sm">
                 מרחב לעצירה,<br>נשימה וחיבור פנימי
             </h1>
             
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mt-10">
-                <a href="#contact" class="bg-brand-purple text-white hover:bg-brand-text py-3 px-8 rounded-full text-lg transition-all w-full sm:w-auto text-center shadow-md glow-effect">
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mt-12">
+                <a href="#contact" class="btn-magic py-4 px-12 rounded-full text-xl font-display tracking-wider w-full sm:w-auto text-center">
                     לריטריט הקרוב
                 </a>
-                <a href="#services" class="bg-white/80 text-brand-purple hover:bg-white py-3 px-8 rounded-full text-lg transition-all w-full sm:w-auto text-center shadow-sm border border-brand-purple/20">
+                <a href="#services" class="bg-white/60 hover:bg-white text-fairy-text border border-fairy-lilac py-4 px-12 rounded-full text-xl font-display tracking-wider transition-all w-full sm:w-auto text-center shadow-sm">
                     סדנאות לארגונים
                 </a>
             </div>
         </div>
 
-        <div class="relative z-10 max-w-2xl mx-auto px-6 mt-16 text-center fade-in">
-            <p class="text-lg md:text-xl text-brand-text leading-relaxed font-light italic">
-                "אם הגעת לכאן, אולי את עייפה מהדוחק הכללי... צריכה רגע בלי ציפיות ובלי להסביר. זה בדיוק המקום לעצור."
+        <!-- טקסט מבוא בתחתית ה-Hero -->
+        <div class="relative z-10 max-w-2xl mx-auto px-6 mt-20 text-center fade-in">
+            <p class="text-lg md:text-xl text-fairy-text leading-relaxed font-light">
+                אם הגעת לכאן, אולי את עייפה מהדוחק הכללי, מרגישה עומס או שחיקה. מחפשת שקט, לא רעש. צריכה רגע בלי ציפיות ובלי להסביר. זה בדיוק המקום לעצור.
             </p>
         </div>
     </section>
 
-    <section id="about" class="py-20 bg-white relative">
-        <div class="max-w-5xl mx-auto px-4">
+    <!-- מה קורה כאן בעצם - גריד האייקונים -->
+    <section id="about" class="py-24 bg-white/80 backdrop-blur-md relative">
+        <div class="max-w-6xl mx-auto px-4">
             <div class="text-center mb-16 fade-in">
-                <h2 class="text-3xl md:text-4xl text-brand-purple mb-6 font-display">מה קורה כאן בעצם</h2>
-                <p class="text-lg md:text-xl text-brand-text max-w-3xl mx-auto font-light leading-relaxed">
+                <h2 class="text-5xl md:text-6xl text-fairy-lilac mb-6 font-display">מה קורה כאן בעצם</h2>
+                <p class="text-lg md:text-xl text-fairy-text max-w-3xl mx-auto font-light leading-relaxed">
                     המרחב של אורפז הוא מקום של ריטריטים, סדנאות וימי העצמה שמאפשרים לעצור, להקשיב לגוף, ולחזור לעצמנו בקצב רך.
                     <br><br>
-                    <span class="text-brand-pink font-medium">זה לא טיפול. זה לא אימון. זו חוויה שמחזירה נשימה.</span>
+                    <span class="text-fairy-rose font-medium">זה לא טיפול. זה לא אימון. זו חוויה שמחזירה נשימה.</span>
                 </p>
             </div>
 
-            <!-- הגריד פרופורציונלי יותר -->
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-y-12 gap-x-8 max-w-4xl mx-auto">
+            <!-- גריד האייקונים - שימוש ב-Phosphor Icons הדקים -->
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-y-16 gap-x-8 mt-16 max-w-4xl mx-auto">
                 <div class="flex flex-col items-center text-center fade-in group">
-                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-brand-pinkLight flex items-center justify-center text-brand-pink text-2xl md:text-3xl mb-4 group-hover:bg-brand-pink group-hover:text-white transition-colors duration-300">
-                        <i class="fas fa-hands-holding-circle"></i>
+                    <div class="w-24 h-24 flex items-center justify-center text-fairy-mint text-5xl mb-4 bg-fairy-mintLight rounded-full shape-fairy-1 magic-glow transition-all duration-500 group-hover:scale-110">
+                        <i class="ph ph-hands-clapping"></i>
                     </div>
-                    <h3 class="text-lg md:text-xl text-brand-text">סדנת הודיה</h3>
+                    <h3 class="text-2xl font-display text-fairy-text tracking-wider">סדנת הודיה</h3>
                 </div>
-                <div class="flex flex-col items-center text-center fade-in group">
-                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-brand-purpleLight flex items-center justify-center text-brand-purple text-2xl md:text-3xl mb-4 group-hover:bg-brand-purple group-hover:text-white transition-colors duration-300">
-                        <i class="fas fa-wind"></i>
+                <div class="flex flex-col items-center text-center fade-in group" style="transition-delay: 100ms;">
+                    <div class="w-24 h-24 flex items-center justify-center text-fairy-lilac text-5xl mb-4 bg-fairy-lilacLight rounded-full shape-fairy-2 magic-glow transition-all duration-500 group-hover:scale-110">
+                        <i class="ph ph-wind"></i>
                     </div>
-                    <h3 class="text-lg md:text-xl text-brand-text">נשימה מודעת</h3>
+                    <h3 class="text-2xl font-display text-fairy-text tracking-wider">נשימה מודעת</h3>
                 </div>
-                <div class="flex flex-col items-center text-center fade-in group">
-                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-brand-sageLight flex items-center justify-center text-brand-sage text-2xl md:text-3xl mb-4 group-hover:bg-brand-sage group-hover:text-white transition-colors duration-300">
-                        <i class="fas fa-spa"></i>
+                <div class="flex flex-col items-center text-center fade-in group" style="transition-delay: 200ms;">
+                    <div class="w-24 h-24 flex items-center justify-center text-fairy-rose text-5xl mb-4 bg-fairy-roseLight rounded-full shape-fairy-3 magic-glow transition-all duration-500 group-hover:scale-110">
+                        <i class="ph ph-sparkle"></i>
                     </div>
-                    <h3 class="text-lg md:text-xl text-brand-text">סדנת הילינג</h3>
+                    <h3 class="text-2xl font-display text-fairy-text tracking-wider">סדנת הילינג</h3>
                 </div>
-                <div class="flex flex-col items-center text-center fade-in group">
-                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-brand-sageLight flex items-center justify-center text-brand-sage text-2xl md:text-3xl mb-4 group-hover:bg-brand-sage group-hover:text-white transition-colors duration-300">
-                        <i class="fas fa-seedling"></i>
+                <div class="flex flex-col items-center text-center fade-in group" style="transition-delay: 300ms;">
+                    <div class="w-24 h-24 flex items-center justify-center text-fairy-mint text-5xl mb-4 bg-fairy-mintLight rounded-full shape-fairy-3 magic-glow transition-all duration-500 group-hover:scale-110">
+                        <i class="ph ph-flower-lotus"></i>
                     </div>
-                    <h3 class="text-lg md:text-xl text-brand-text">חיבור לטבע</h3>
+                    <h3 class="text-2xl font-display text-fairy-text tracking-wider">חיבור לטבע</h3>
                 </div>
-                <div class="flex flex-col items-center text-center fade-in group">
-                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-brand-pinkLight flex items-center justify-center text-brand-pink text-2xl md:text-3xl mb-4 group-hover:bg-brand-pink group-hover:text-white transition-colors duration-300">
-                        <i class="fas fa-comments"></i>
+                <div class="flex flex-col items-center text-center fade-in group" style="transition-delay: 400ms;">
+                    <div class="w-24 h-24 flex items-center justify-center text-fairy-lilac text-5xl mb-4 bg-fairy-lilacLight rounded-full shape-fairy-1 magic-glow transition-all duration-500 group-hover:scale-110">
+                        <i class="ph ph-users-three"></i>
                     </div>
-                    <h3 class="text-lg md:text-xl text-brand-text">מעגלי שיח</h3>
+                    <h3 class="text-2xl font-display text-fairy-text tracking-wider">מעגלי שיח</h3>
                 </div>
-                <div class="flex flex-col items-center text-center fade-in group">
-                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-brand-purpleLight flex items-center justify-center text-brand-purple text-2xl md:text-3xl mb-4 group-hover:bg-brand-purple group-hover:text-white transition-colors duration-300">
-                        <i class="fas fa-person-walking"></i>
+                <div class="flex flex-col items-center text-center fade-in group" style="transition-delay: 500ms;">
+                    <div class="w-24 h-24 flex items-center justify-center text-fairy-rose text-5xl mb-4 bg-fairy-roseLight rounded-full shape-fairy-2 magic-glow transition-all duration-500 group-hover:scale-110">
+                        <i class="ph ph-person-simple-walk"></i>
                     </div>
-                    <h3 class="text-lg md:text-xl text-brand-text">סדנת תנועה</h3>
+                    <h3 class="text-2xl font-display text-fairy-text tracking-wider">סדנת תנועה</h3>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-20 bg-brand-purpleLight relative">
-        <div class="wave-divider top-0 transform -translate-y-full opacity-60">
-            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="fill-brand-purpleLight"></path>
-            </svg>
-        </div>
-
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <h2 class="text-3xl md:text-4xl text-brand-purple mb-8 font-display fade-in">נעים להכיר, אני אורפז אילי אורן.</h2>
+    <!-- אודות אורפז (התמונה המרכזית) -->
+    <section class="py-24 bg-fairy-roseLight/30 relative overflow-hidden">
+        
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+            <h2 class="text-5xl md:text-6xl text-fairy-rose mb-10 font-display fade-in">נעים להכיר, אני אורפז.</h2>
             
-            <p class="text-lg md:text-xl text-brand-text font-light leading-relaxed mb-12 fade-in">
-                "המרחב נולד מתוך מסע אישי של שבר, התבוננות ובחירה. מצאתי כלים פשוטים ועמוקים שמאפשרים לעצור, לנשום, ולבנות עוגן פנימי שאפשר לקחת חזרה לחיים."
+            <p class="text-lg md:text-xl text-fairy-text font-light leading-relaxed mb-16 fade-in bg-white/50 backdrop-blur-sm p-8 rounded-3xl magic-glow">
+                "המרחב נולד מתוך מסע אישי של שבר, התבוננות ובחירה. מתוך תקופות שבהן קשה לראות את ה'יש', מצאתי כלים פשוטים ועמוקים שמאפשרים לעצור, לנשום, ולבנות עוגן פנימי שאפשר לקחת חזרה לחיים."
+                <br><br>
+                המרחבים שאני יוצרת משלבים שיח, תנועה, נשימה והתבוננות פנימית, בתוך מסגרת תומכת ומכילה במשמר הנגב.
             </p>
 
-            <!-- תמונה בגודל יחסי שלא יישבר -->
-            <div class="w-full max-w-[280px] aspect-square mx-auto fade-in relative bg-white p-2 glow-effect shape-petal-1">
-                <img src="ORPAZ.png" alt="אורפז אילי אורן" class="w-full h-full object-cover shape-petal-1">
+            <!-- תמונת אורפז במרכז (עם מסגרת טיפה/אורגנית) -->
+            <div class="w-64 h-64 md:w-80 md:h-80 mx-auto fade-in relative animate-float">
+                <div class="absolute inset-0 bg-gradient-to-tr from-fairy-lilac to-fairy-rose shape-fairy-1 magic-glow opacity-50 blur-md"></div>
+                <img src="ORPAZ.png" alt="אורפז אילי אורן" class="w-full h-full object-cover shape-fairy-1 relative z-10 border-4 border-white/80 shadow-sm">
             </div>
         </div>
 
-        <div class="wave-divider bottom-0 opacity-80">
-            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="fill-white"></path>
-            </svg>
-        </div>
     </section>
 
-    <section id="services" class="py-24 bg-white text-brand-text relative">
-        <div class="max-w-6xl mx-auto px-4">
+    <!-- ריטריטים וסדנאות (תמונות מהיער והטבע) -->
+    <section id="services" class="py-32 bg-magic-forest relative">
+        <div class="max-w-7xl mx-auto px-4">
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 text-center">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-5xl md:text-6xl text-fairy-text mb-4 font-display">המרחבים שאני מציעה</h2>
+                <i class="ph-fill ph-plant text-4xl text-fairy-mint"></i>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 md:gap-10 text-center">
                 
-                <!-- ריטריטים -->
-                <div class="flex flex-col items-center fade-in">
-                    <!-- רוחב וגובה רספונסיביים -->
-                    <div class="w-full max-w-[260px] aspect-[4/5] relative mb-6 p-2 bg-brand-pinkLight glow-effect shape-petal-2">
-                        <img src="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="ריטריטים" class="w-full h-full object-cover opacity-90 shape-petal-2">
+                <!-- עמודה 1: ריטריטים -->
+                <div class="flex flex-col items-center fade-in group">
+                    <div class="w-64 h-64 relative mb-8 animate-float">
+                        <!-- תמונת אווירה קסומה: נשים במעגל/טבע חלומי -->
+                        <img src="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="ריטריטים" class="w-full h-full object-cover shape-fairy-2 magic-glow transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-fairy-lilac/20 shape-fairy-2 mix-blend-overlay"></div>
                     </div>
-                    <h3 class="text-2xl font-display text-brand-pink mb-3">ריטריטים</h3>
-                    <p class="text-base font-light leading-relaxed text-gray-500 max-w-[260px]">
-                        חוויה מפנקת, מחברת ומעצימה, שמחזירה אותך לעצמך. סופ"ש של ניתוק והטענה.
+                    <h3 class="text-4xl font-display text-fairy-lilac mb-4 tracking-wider">ריטריטים</h3>
+                    <p class="text-lg font-light leading-relaxed max-w-xs text-fairy-text">
+                        חוויה מפנקת, מחברת ומעצימה, שמחזירה אותך לעצמך. סופ"ש של ניתוק, טבע והטענה.
                     </p>
                 </div>
 
-                <!-- סדנאות -->
-                <div class="flex flex-col items-center fade-in delay-100">
-                    <div class="w-full max-w-[260px] aspect-[4/5] relative mb-6 p-2 bg-brand-sageLight glow-effect shape-petal-3">
-                        <img src="https://images.unsplash.com/photo-1469504512102-900f29606341?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="סדנאות" class="w-full h-full object-cover opacity-90 shape-petal-3">
+                <!-- עמודה 2: סדנאות -->
+                <div class="flex flex-col items-center fade-in group" style="transition-delay: 200ms;">
+                    <div class="w-64 h-64 relative mb-8 animate-float-delayed">
+                        <!-- תמונת פרחים/קריסטלים/אוירה רכה -->
+                        <img src="https://images.unsplash.com/photo-1494959764136-6be9eb3c261e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="סדנאות" class="w-full h-full object-cover shape-fairy-3 magic-glow transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-fairy-mint/20 shape-fairy-3 mix-blend-overlay"></div>
                     </div>
-                    <h3 class="text-2xl font-display text-brand-sage mb-3">סדנאות</h3>
-                    <p class="text-base font-light leading-relaxed text-gray-500 max-w-[260px]">
-                        תנועה, יצירה, הודיה, נשימות ומעגל פתיחה. מפגשים ממוקדים.
+                    <h3 class="text-4xl font-display text-fairy-mint mb-4 tracking-wider">סדנאות</h3>
+                    <p class="text-lg font-light leading-relaxed max-w-xs text-fairy-text">
+                        תנועה, יצירה, הודיה, נשימות ומעגל פתיחה. מפגשים ממוקדים בקליניקה המעוטפת שלנו.
                     </p>
                 </div>
 
-                <!-- לארגונים -->
-                <div class="flex flex-col items-center fade-in delay-200 lg:col-span-1 md:col-span-2">
-                    <div class="w-full max-w-[260px] aspect-[4/5] relative mb-6 p-2 bg-brand-purpleLight glow-effect shape-petal-1">
-                        <img src="https://images.unsplash.com/photo-1528605105345-5344ea20e269?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="לחברות וארגונים" class="w-full h-full object-cover opacity-90 shape-petal-1">
+                <!-- עמודה 3: לארגונים -->
+                <div class="flex flex-col items-center fade-in group lg:col-span-1 md:col-span-2" style="transition-delay: 400ms;">
+                    <div class="w-64 h-64 relative mb-8 animate-float">
+                        <!-- תמונת אור שמש ביער/יחד -->
+                        <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="לחברות וארגונים" class="w-full h-full object-cover shape-fairy-1 magic-glow transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-fairy-rose/20 shape-fairy-1 mix-blend-overlay"></div>
                     </div>
-                    <h3 class="text-2xl font-display text-brand-purple mb-3">לחברות וארגונים</h3>
-                    <p class="text-base font-light leading-relaxed text-gray-500 max-w-[260px]">
-                        יום שלם של חיבור, חוסן וגאווה בארגון. מתאים לימי גיבוש.
+                    <h3 class="text-4xl font-display text-fairy-rose mb-4 tracking-wider">לחברות וארגונים</h3>
+                    <p class="text-lg font-light leading-relaxed max-w-xs text-fairy-text">
+                        יום שלם של חיבור, חוסן וגאווה בארגון. מתאים לימי גיבוש, ימי עובד, מתוך שקט והעצמה.
                     </p>
                 </div>
 
@@ -310,44 +361,79 @@
         </div>
     </section>
 
-    <section class="relative py-24 bg-brand-pinkLight text-brand-text">
-        <div class="max-w-3xl mx-auto px-4 text-center space-y-16 relative z-10">
+    <!-- אזור יצירת קשר והרשמה (בתוך יער האגדות) -->
+    <section id="contact" class="py-24 bg-white/60 backdrop-blur-sm relative border-t border-white/50">
+        <div class="max-w-4xl mx-auto px-4 text-center space-y-24">
             
-            <div class="fade-in bg-white/70 backdrop-blur-md p-8 md:p-12 rounded-3xl shadow-sm border border-white">
-                <h2 class="text-3xl md:text-4xl font-display text-brand-purple mb-4">מוכנה לעצור רגע?</h2>
-                <p class="text-lg font-light leading-relaxed mb-8 text-gray-600">
-                    מרחב של שקט, תנועה ונשימה. השאירי הודעה ונחזור אלייך עם כל הפרטים.
+            <!-- בלוק 1: ריטריט -->
+            <div class="fade-in bg-white/70 p-10 md:p-16 rounded-3xl magic-glow relative">
+                <!-- עלה קטן לקישוט -->
+                <div class="absolute -top-6 -right-6 text-fairy-mint text-5xl opacity-70 animate-float"><i class="ph-fill ph-leaf"></i></div>
+                
+                <h2 class="text-5xl font-display text-fairy-lilac mb-6">להצטרף למעגל הבא</h2>
+                <p class="text-lg md:text-xl font-light leading-relaxed mb-10 text-fairy-text">
+                    מרחב של שקט, תנועה ונשימה המאפשר לך לעצור, להקשיב לגוף ולחזור לעצמך בקצב רך. זו חוויה שמחזירה נשימה ובונה עוגן פנימי.
                 </p>
-                <a href="https://wa.me/972506954593?text=היי%20אורפז,%20אשמח%20לפרטים" target="_blank" 
-                   class="inline-flex items-center justify-center gap-2 bg-brand-purple hover:bg-brand-text text-white py-3 px-8 rounded-full text-lg transition-all shadow-md">
-                   <i class="fab fa-whatsapp"></i>
-                   שלחי לי הודעה
+                <a href="https://wa.me/972506954593?text=היי%20אורפז,%20אני%20רוצה%20להירשם%20לריטריט%20הקרוב!" target="_blank" 
+                   class="inline-flex items-center justify-center gap-3 btn-magic py-4 px-12 rounded-full text-xl font-display tracking-widest">
+                   <i class="ph ph-whatsapp-logo text-2xl"></i>
+                   לפרטים והרשמה
+                </a>
+            </div>
+
+            <!-- בלוק 2: ארגונים -->
+            <div class="fade-in bg-fairy-mintLight/50 p-10 md:p-16 rounded-3xl magic-glow border border-white/50 relative">
+                <h2 class="text-5xl font-display text-fairy-mint mb-6">להביא את הקסם לארגון</h2>
+                <p class="text-lg md:text-xl font-light leading-relaxed mb-10 text-fairy-text">
+                    אנחנו מלווים ארגונים וצוותים בימי העצמה וחוסן. הסדנאות שלנו משלבות עבודה עם הגוף, נשימה וכלים פרקטיים מתוך מסגרת עוטפת.
+                </p>
+                <a href="https://wa.me/972506954593?text=היי%20אורפז,%20אשמח%20לפרטים%20על%20סדנאות%20לארגונים" target="_blank" 
+                   class="inline-flex items-center justify-center gap-3 bg-white text-fairy-mint border border-fairy-mint hover:bg-fairy-mint hover:text-white py-4 px-12 rounded-full text-xl font-display tracking-widest transition-colors shadow-sm">
+                   להזמנת סדנא לצוות
                 </a>
             </div>
 
         </div>
     </section>
 
-    <footer class="bg-white text-brand-text py-12 text-center border-t border-brand-pinkLight">
-        <div class="flex justify-center gap-6 mb-6 text-xl">
-            <a href="https://wa.me/972506954593" target="_blank" class="text-brand-sage hover:text-brand-pink transition-colors"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://www.instagram.com/orpaz_iliy_oren?igsh=MzNuNGp4b3lsNHAx" target="_blank" class="text-brand-purple hover:text-brand-pink transition-colors"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/share/1BCMwK385v/" target="_blank" class="text-brand-purple hover:text-brand-pink transition-colors"><i class="fab fa-facebook-f"></i></a>
+    <!-- פוטר -->
+    <footer class="bg-fairy-roseLight text-fairy-text py-12 text-center border-t border-white">
+        <div class="flex justify-center gap-6 mb-8 text-3xl">
+            <a href="https://wa.me/972506954593" target="_blank" class="text-fairy-lilac hover:text-fairy-rose transition"><i class="ph ph-whatsapp-logo"></i></a>
+            <a href="https://www.instagram.com/orpaz_iliy_oren?igsh=MzNuNGp4b3lsNHAx" target="_blank" class="text-fairy-lilac hover:text-fairy-rose transition"><i class="ph ph-instagram-logo"></i></a>
+            <a href="https://www.facebook.com/share/1BCMwK385v/" target="_blank" class="text-fairy-lilac hover:text-fairy-rose transition"><i class="ph ph-facebook-logo"></i></a>
         </div>
-        <p class="text-base mb-1">אורפז אילי אורן | משמר הנגב | <span dir="ltr">050-6954593</span></p>
-        <p class="text-xs text-gray-400 mt-4">&copy; כל הזכויות שמורות לאורפז אילי אורן.</p>
+        <p class="text-lg mb-2 font-display tracking-wider">אורפז אילי אורן | הקליניקה במשמר הנגב | <span dir="ltr">050-6954593</span></p>
+        <p class="text-sm opacity-60">&copy; כל הזכויות שמורות לאורפז אילי אורן.</p>
     </footer>
 
     <script>
         // תפריט מובייל
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
+        const icon = btn.querySelector('i');
         
         btn.addEventListener('click', () => {
             menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) {
+                icon.classList.remove('ph-x');
+                icon.classList.add('ph-list');
+            } else {
+                icon.classList.remove('ph-list');
+                icon.classList.add('ph-x');
+            }
         });
 
-        // אנימציות צצה בגלילה
+        // סגירת תפריט מובייל בעת לחיצה על קישור
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+                icon.classList.remove('ph-x');
+                icon.classList.add('ph-list');
+            });
+        });
+
+        // אנימציות גלילה עדינות
         const observerOptions = {
             threshold: 0.1,
             rootMargin: "0px 0px -50px 0px"
@@ -364,6 +450,18 @@
 
         document.querySelectorAll('.fade-in').forEach(el => {
             observer.observe(el);
+        });
+
+        // שינוי עיצוב ה-Navbar בגלילה למטה
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.replace('bg-white/70', 'bg-white/95');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.replace('bg-white/95', 'bg-white/70');
+            }
         });
     </script>
 </body>
