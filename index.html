@@ -101,18 +101,38 @@
                     </button>
                 </div>
 
-                <!-- לוגו חדש (עיצוב נשי, רך וקסום במקום בית כנסת) -->
+                <!-- לוגו חדש - זרימה, נשימה, טבע ואור (ללא אסטרופיזיקה!) -->
                 <div class="flex flex-col items-center justify-center md:w-1/3 relative group pt-2">
-                    <div class="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mb-1 relative">
-                        <!-- הילה רכה -->
-                        <div class="absolute inset-0 bg-fairy-lilac/30 blur-md rounded-full group-hover:scale-110 transition-transform duration-500"></div>
-                        <!-- מעבר צבעים עדין -->
-                        <div class="absolute inset-1 bg-gradient-to-tr from-fairy-rose to-fairy-mint rounded-full opacity-80"></div>
-                        <!-- פרח לוטוס וניצוץ -->
-                        <i class="ph-fill ph-flower-lotus text-fairy-text text-3xl md:text-4xl relative z-10 drop-shadow-sm group-hover:-translate-y-1 transition-transform duration-500"></i>
-                        <i class="ph-fill ph-sparkle text-fairy-lilac text-sm absolute top-2 right-2 z-10 animate-pulse"></i>
+                    <div class="w-20 h-20 md:w-28 md:h-28 flex items-center justify-center mb-2 relative">
+                        <!-- הילה רכה מסביב -->
+                        <div class="absolute inset-0 bg-fairy-lilac/20 blur-xl rounded-full group-hover:scale-125 transition-transform duration-700"></div>
+                        
+                        <!-- לוגו מקורי: גלי נשימה, שמש רכה וענף צומח -->
+                        <svg viewBox="0 0 100 100" class="w-full h-full relative z-10 drop-shadow-sm group-hover:-translate-y-1 transition-transform duration-500">
+                            
+                            <!-- שמש/אור רך -->
+                            <circle cx="60" cy="45" r="26" fill="#FCE4EC" class="group-hover:scale-105 transition-transform duration-700 origin-center"/>
+                            <circle cx="60" cy="45" r="16" fill="#F3E5F5" />
+
+                            <!-- גלי נשימה/רוח זורמים -->
+                            <path d="M -10,60 C 20,40 40,70 70,50 C 90,35 110,40 110,40" fill="none" stroke="#E0F2F1" stroke-width="8" stroke-linecap="round" opacity="0.8"/>
+                            <path d="M 0,75 C 30,55 50,85 80,65 C 100,50 120,55 120,55" fill="none" stroke="#E1BEE7" stroke-width="6" stroke-linecap="round" opacity="0.6"/>
+
+                            <!-- ענף בוטני עדין (צמיחה וחיבור) -->
+                            <path d="M 30,90 Q 45,65 55,40 T 70,20" fill="none" stroke="#6A1B9A" stroke-width="1.5" stroke-linecap="round"/>
+
+                            <!-- עלים רכים -->
+                            <path d="M 55,40 Q 45,35 50,25 Q 60,30 55,40 Z" fill="#6A1B9A" opacity="0.9"/>
+                            <path d="M 45,55 Q 35,50 40,40 Q 50,45 45,55 Z" fill="#6A1B9A" opacity="0.75"/>
+                            <path d="M 38,70 Q 28,65 33,55 Q 43,60 38,70 Z" fill="#6A1B9A" opacity="0.6"/>
+                            <path d="M 65,25 Q 60,15 70,10 Q 75,20 65,25 Z" fill="#6A1B9A" opacity="0.85"/>
+                            <path d="M 52,78 Q 45,70 55,65 Q 60,75 52,78 Z" fill="#CE93D8" opacity="0.7"/> 
+                            
+                            <!-- ניצוץ עדין קטן של קסם -->
+                            <path d="M 80,35 L 81,38 L 84,39 L 81,40 L 80,43 L 79,40 L 76,39 L 79,38 Z" fill="#D4AF37" class="animate-pulse" style="animation-delay: 0.5s;"/>
+                        </svg>
                     </div>
-                    <span class="font-display text-3xl md:text-4xl text-fairy-text tracking-widest mt-1 relative z-10">אורפז אילי אורן</span>
+                    <span class="font-display text-4xl md:text-5xl text-fairy-text tracking-widest mt-1 relative z-10 drop-shadow-sm">אורפז אילי אורן</span>
                 </div>
 
                 <div class="flex items-center justify-end gap-4 md:w-1/3">
