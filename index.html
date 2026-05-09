@@ -80,27 +80,6 @@
             border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
         }
 
-        /* סגנון לוגו חדש מעוצב ב-CSS */
-        .logo-circle {
-            background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(243,229,245,1) 100%);
-            border: 2px solid theme('colors.fairy.gold');
-            box-shadow: 0 0 20px theme('colors.fairy.gold');
-            position: relative;
-        }
-        .logo-rays {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 4rem;
-            color: theme('colors.fairy.gold');
-            opacity: 0.3;
-            animation: spin-slow 20s linear infinite;
-        }
-        @keyframes spin-slow {
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
     </style>
 </head>
 <body class="antialiased selection:bg-fairy-lilac selection:text-white">
@@ -122,11 +101,16 @@
                     </button>
                 </div>
 
-                <!-- לוגו חדש (מעוצב בקוד) -->
+                <!-- לוגו חדש (עיצוב נשי, רך וקסום במקום בית כנסת) -->
                 <div class="flex flex-col items-center justify-center md:w-1/3 relative group pt-2">
-                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-full logo-circle flex items-center justify-center mb-1 overflow-hidden">
-                        <i class="fas fa-sun logo-rays"></i>
-                        <i class="fas fa-tree text-fairy-text text-2xl md:text-3xl relative z-10"></i>
+                    <div class="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mb-1 relative">
+                        <!-- הילה רכה -->
+                        <div class="absolute inset-0 bg-fairy-lilac/30 blur-md rounded-full group-hover:scale-110 transition-transform duration-500"></div>
+                        <!-- מעבר צבעים עדין -->
+                        <div class="absolute inset-1 bg-gradient-to-tr from-fairy-rose to-fairy-mint rounded-full opacity-80"></div>
+                        <!-- פרח לוטוס וניצוץ -->
+                        <i class="ph-fill ph-flower-lotus text-fairy-text text-3xl md:text-4xl relative z-10 drop-shadow-sm group-hover:-translate-y-1 transition-transform duration-500"></i>
+                        <i class="ph-fill ph-sparkle text-fairy-lilac text-sm absolute top-2 right-2 z-10 animate-pulse"></i>
                     </div>
                     <span class="font-display text-3xl md:text-4xl text-fairy-text tracking-widest mt-1 relative z-10">אורפז אילי אורן</span>
                 </div>
@@ -367,9 +351,10 @@
                     </div>
                 </div>
 
+                <!-- תמונה מתוקנת למאמר המדיטציה -->
                 <div class="bg-white rounded-3xl overflow-hidden shadow-lg border border-white fade-in group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col h-full" style="transition-delay: 200ms;">
                     <div class="h-48 overflow-hidden relative shrink-0">
-                        <img src="https://images.unsplash.com/photo-1498837167922-41c53b4f0b2f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="מדיטציה" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <img src="https://images.unsplash.com/photo-1508672019048-805c876b67e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="מדיטציה" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                         <div class="absolute inset-0 bg-fairy-mint/20 mix-blend-multiply"></div>
                     </div>
                     <div class="p-8 flex flex-col flex-grow">
